@@ -78,10 +78,10 @@ daily-driver autonomous agent — is mine. Also:
 
 ## Built with Claude Code
 
-Three real projects, each shipped end to end with Claude Code — from a spoken
-idea, through design, onto live hardware, through the bugs that only show up
-once real data hits them. Each is its own repo with its actual commit
-history, AI co-author trailers included on purpose:
+Each shipped end to end with Claude Code — from a spoken idea, through design,
+onto live hardware, through the bugs that only show up once real data hits
+them. Each is its own repo with its actual commit history, AI co-author
+trailers included on purpose:
 
 ### [lecture-pipeline](https://github.com/SpencerHalle/lecture-pipeline)
 Record a lecture on my phone → it's transcribed on a GPU box with Whisper →
@@ -91,6 +91,15 @@ Debugged along the way: a CDN silently 403ing a default `urllib` user-agent,
 two models fighting over 8 GB of VRAM, a reasoning model that would burn its
 whole token budget "thinking" and return nothing — and a schedule-based
 classifier so a recording never needs a filename to know which class it's from.
+
+### [recordings](https://github.com/SpencerHalle/recordings)
+The front end to the lecture pipeline: a phone-installable voice recorder (PWA)
+that saves straight onto bigbox. Hit record during a scheduled class and it
+also drops the audio into the exact Nextcloud folder the pipeline watches,
+named so the pipeline can work out which class it was — so "record" then
+"save" is the whole workflow, and the notes show up half an hour later. Talks
+to the Nextcloud container directly across the Podman network to sidestep the
+same CDN user-agent block the pipeline ran into.
 
 ### [bigbox-monitor](https://github.com/SpencerHalle/bigbox-monitor)
 Server + Minecraft health pushed straight into Home Assistant — CPU, memory,
@@ -109,3 +118,8 @@ searchable site with a downloadable PDF, with a review queue before anything
 goes live. Solved a genuinely fun problem: OAuth for a headless box with no
 browser of its own, and two different models that can't share one 8 GB GPU
 at the same time.
+
+### [bigbox-backup](https://github.com/SpencerHalle/bigbox-backup)
+Nightly incremental backups of the things I'd actually miss — Nextcloud,
+Immich, the recipe app — onto a separate drive, with the same Home Assistant
+alerting as the monitor so a silently-failing backup doesn't go unnoticed.
